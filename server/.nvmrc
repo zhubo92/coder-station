@@ -1,0 +1,2 @@
+// nvm use $(Get-Content .nvmrc)
+v16.20.2
