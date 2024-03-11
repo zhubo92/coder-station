@@ -34,9 +34,18 @@ export function userLoginApi(data) {
     })
 }
 
+// 获取用户信息
 export function getUserInfoByIdApi(id) {
     return request({
         url: `/api/user/${id}`,
+        method: "GET"
+    })
+}
+
+// 恢复登录状态
+export function getInfoApi() {
+    return request({
+        url: `/api/user/whoami`,
         method: "GET"
     })
 }

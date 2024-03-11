@@ -42,11 +42,12 @@ function LoginForm({isShow, closeModal}) {
             if(!data.data) {
                 message.warning("密码错误！");
                 await handleCaptchaClick();
-            } else if(data.data.enabled) {
+            } else if(!data.data.enabled) {
                 message.warning("账号被禁用！");
                 await handleCaptchaClick();
             } else {
-                localStorage.userToken = data.data.token;
+                if(loginInfo.remember) localStorage.setItem('userToken', data.token);
+                else sessionStorage.setItem('userToken', data.token);
                 await getInfo(data.data._id);
                 message.success("登录成功！");
                 dispatch(changeLoginStatus(true));
