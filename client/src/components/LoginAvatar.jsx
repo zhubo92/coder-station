@@ -1,6 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {Avatar, Button, List, Popover, Image} from "antd";
+import {Avatar, Button, List, Popover} from "antd";
 import {UserOutlined} from '@ant-design/icons';
 import styles from '../style/LoginAvatar.module.css'
 import {changeLoginStatus, clearUserInfo} from "../redux/userSlice";
@@ -38,7 +38,7 @@ function LoginAvatar({handleLogin}) {
         loginStatus = (
             <Popover content={content} trigger="hover" placement="bottom">
                 <div className={styles.avatarContainer}>
-                    <Avatar src={<Image src={userInfo?.avatar} preview={false} />} size="large" icon={<UserOutlined />} />
+                    <Avatar src={userInfo?.avatar} size="large" icon={<UserOutlined />} />
                 </div>
             </Popover>
         )

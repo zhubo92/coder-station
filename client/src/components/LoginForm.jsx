@@ -166,7 +166,7 @@ function LoginForm({isShow, closeModal}) {
 
                     {/* 验证码 */}
                     <Form.Item
-                        name="logincaptcha"
+                        name="captcha"
                         label="验证码"
                         rules={[
                             {
@@ -219,7 +219,7 @@ function LoginForm({isShow, closeModal}) {
                         >
                             登录
                         </Button>
-                        <Button type="primary" htmlType="submit">
+                        <Button type="primary" htmlType="reset" onClick={handleCancel}>
                             重置
                         </Button>
                     </Form.Item>
@@ -307,7 +307,7 @@ function LoginForm({isShow, closeModal}) {
                         >
                             注册
                         </Button>
-                        <Button type="primary" htmlType="submit">
+                        <Button type="primary" htmlType="reset" onClick={handleCancel}>
                             重置
                         </Button>
                     </Form.Item>
@@ -318,7 +318,7 @@ function LoginForm({isShow, closeModal}) {
 
     return (
         <div>
-            <Modal title="注册/登录" open={isShow} onOk={handleOk} onCancel={closeModal}>
+            <Modal title="注册/登录" footer={null} open={isShow} onOk={handleOk} onCancel={closeModal}>
                 <Radio.Group value={value} buttonStyle="solid" className={styles.radioGroup} onChange={handleChange}>
                     <Radio.Button value={1} className={styles.radioButton}>登录</Radio.Button>
                     <Radio.Button value={2} className={styles.radioButton}>注册</Radio.Button>

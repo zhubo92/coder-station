@@ -50,7 +50,7 @@ function App() {
             <Content className="content">
                 <RouterConfig/>
             </Content>
-            <Footer className="footer">
+            <Footer>
                 <PageFooter/>
             </Footer>
             <LoginForm isShow={isModalOpen} closeModal={closeModal}/>

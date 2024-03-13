@@ -1,4 +1,10 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {updateUserByIdApi} from "../api/user";
+
+export const updateUserInfoAsync = createAsyncThunk('user/updateUserInfoAsync', async (arg, thunkAPI) => {
+    await updateUserByIdApi(arg.userId, arg.newInfo);
+    thunkAPI.dispatch(updateUserInfo(arg.newInfo));
+});
 
 const userSlice = createSlice({
     name: 'user',
@@ -16,12 +22,15 @@ const userSlice = createSlice({
             state.isLogin = payload;
         },
         // 清除用户信息
-        clearUserInfo: (state, {payload}) => {
+        clearUserInfo: (state) => {
             state.userInfo = {};
+        },
+        updateUserInfo: (state, {payload}) => {
+            state.userInfo = { ...state.userInfo, ...payload };
         }
     }
 });
 
-export const {initUserInfo, changeLoginStatus, clearUserInfo} = userSlice.actions;
+export const {initUserInfo, changeLoginStatus, clearUserInfo, updateUserInfo} = userSlice.actions;
 
 export default userSlice.reducer;
