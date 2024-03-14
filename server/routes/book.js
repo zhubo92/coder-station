@@ -10,7 +10,7 @@ const {
   addBookService,
   findBookByPageService,
   findBookByIdService,
-  updateBookService,
+  updateBookApiService,
   deleteBookService,
 } = require("../services/bookService");
 
@@ -57,7 +57,7 @@ router.delete("/:id", async function (req, res) {
  * 修改书籍
  */
 router.patch("/:id", async function (req, res) {
-  const result = await updateBookService(req.params.id, req.body);
+  const result = await updateBookApiService(req.params.id, req.body);
   res.send(formatResponse(0, "", result));
 });
 

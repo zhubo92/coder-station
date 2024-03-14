@@ -2,9 +2,9 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {getTypeApi} from "../api/type";
 import {message} from "antd";
 
-export const getTypeList =
+export const getTypeListAsync =
     createAsyncThunk(
-        "type/getTypeList",
+        "type/getTypeListAsync",
         async (_, thunkAPI) => {
             const {data, code, msg} = await getTypeApi();
             if (code === 0) {
@@ -18,16 +18,27 @@ export const getTypeList =
 const typeSlice = createSlice({
     name: 'type',
     initialState: {
-        typeList: [] // 存储所有的类型
+        typeList: [], // 存储所有的类型
+        issueTypeId: 'all',
+        bookTypeId: 'all'
     },
-    reducers: {},
+    reducers: {
+        updateIssueTypeId: (state, {payload}) => {
+            state.issueTypeId = payload;
+        },
+        updateBookTypeId: (state, {payload}) => {
+            state.bookTypeId = payload;
+        },
+    },
     // 专门处理异步结果的
     extraReducers(builder) {
         builder
-            .addCase(getTypeList.fulfilled, (state, {payload}) => {
+            .addCase(getTypeListAsync.fulfilled, (state, {payload}) => {
                 state.typeList = payload;
             })
     }
 });
+
+export const {updateIssueTypeId, updateBookTypeId} = typeSlice.actions;
 
 export default typeSlice.reducer;

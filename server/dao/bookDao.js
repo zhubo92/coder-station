@@ -61,7 +61,7 @@ module.exports.deleteBookDao = async function (id) {
  * 根据 id 修改书籍
  */
 
-module.exports.updateBookDao = async function (id, newInfo) {
+module.exports.updateBookApiDao = async function (id, newInfo) {
   return bookModel.updateOne({ _id: id }, newInfo);
 };
 

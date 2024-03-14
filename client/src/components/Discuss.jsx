@@ -5,12 +5,13 @@ import {UserOutlined} from "@ant-design/icons";
 import {Avatar, Button, Form, List, message, Pagination, Tooltip} from "antd";
 import {Editor} from "@toast-ui/react-editor";
 import styles from '../style/Discuss.module.css';
-import {addCommentApi, getIssueCommentByIdApi} from "../api/comment";
+import {addCommentApi, getBookCommentByIdApi, getIssueCommentByIdApi} from "../api/comment";
 import {getUserInfoByIdApi} from "../api/user";
 import {formatDate} from "../utils/tools";
 import {updateIssueByIdApi} from "../api/issue";
 import IssueDetail from "../pages/IssueDetail";
 import {updateUserInfoAsync} from "../redux/userSlice";
+import {updateBookApi} from "../api/book";
 
 /**
  * 评论组件
@@ -29,20 +30,21 @@ function Discuss({commentType, targetId, issueDetail, bookDetail}) {
 
     useEffect(() => {
         async function fetchData() {
-            let list = [];
+            let request = null;
             if (commentType === 1) { // 问答评论
-                const {data} = await getIssueCommentByIdApi(targetId, {
-                    current: params.current,
-                    pageSize: params.pageSize
-                });
-                list = data.data;
-                setParams({
-                    ...params,
-                    total: data.count
-                })
+                request = getIssueCommentByIdApi;
             } else if (commentType === 2) { // 书籍评论
-
+                request = getBookCommentByIdApi;
             }
+            const {data} = await request(targetId, {
+                current: params.current,
+                pageSize: params.pageSize
+            });
+            const list = data.data;
+            setParams({
+                ...params,
+                total: data.count
+            })
 
             for (let i = 0; i < list.length; i++) {
                 const {data} = await getUserInfoByIdApi(list[i].userId);
@@ -71,7 +73,7 @@ function Discuss({commentType, targetId, issueDetail, bookDetail}) {
         }
         const {code, msg, data} = await addCommentApi({
             userId: userInfo?._id,
-            typeId: issueDetail.typeId || bookDetail.typeId,
+            typeId: issueDetail?.typeId || bookDetail?.typeId,
             commentContent: editorContent,
             commentType,
             bookId: commentType === 1 ? null : targetId,
@@ -92,39 +94,48 @@ function Discuss({commentType, targetId, issueDetail, bookDetail}) {
                     userId: userInfo._id
                 }));
             } else if (commentType === 2) {
-
+                await updateBookApi(targetId, {
+                    commentNumber: bookDetail.commentNumber + 1
+                });
+                dispatch(updateUserInfoAsync({
+                    newInfo: {
+                        points: userInfo.points + 4
+                    },
+                    userId: userInfo._id
+                }));
             }
         } else {
             message.warning(msg);
         }
     }
 
-    const comment = <Comment
-        avatar={<Avatar src={userInfo?.avatar} size="large" icon={<UserOutlined/>}/>}
-        content={
-            <>
-                <Form.Item>
-                    <Editor
-                        ref={editorRef}
-                        initialValue=""
-                        previewStyle="vertical"
-                        height="270px"
-                        initialEditType="wysiwyg"
-                        useCommandShortcut={true}
-                        language='zh-CN'
-                        className="editor"
-                    />
-                </Form.Item>
-                <Form.Item>
-                    <Button
-                        type="primary"
-                        disabled={!isLogin}
-                        onClick={handleSubmit}
-                    >添加评论</Button>
-                </Form.Item>
-            </>
-        }
-    />
+    const comment =
+        <Comment
+            avatar={<Avatar src={userInfo?.avatar} size="large" icon={<UserOutlined/>}/>}
+            content={
+                <>
+                    <Form.Item>
+                        <Editor
+                            ref={editorRef}
+                            initialValue=""
+                            previewStyle="vertical"
+                            height="270px"
+                            initialEditType="wysiwyg"
+                            useCommandShortcut={true}
+                            language='zh-CN'
+                            className="editor"
+                        />
+                    </Form.Item>
+                    <Form.Item>
+                        <Button
+                            type="primary"
+                            disabled={!isLogin}
+                            onClick={handleSubmit}
+                        >添加评论</Button>
+                    </Form.Item>
+                </>
+            }
+        />
 
     const list = commentList.length > 0 &&
         <List

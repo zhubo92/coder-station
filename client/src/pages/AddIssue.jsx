@@ -5,7 +5,7 @@ import {Editor} from "@toast-ui/react-editor";
 import {useDispatch, useSelector} from "react-redux";
 import {typeOptionCreator} from "../utils/tools";
 import '@toast-ui/editor/dist/toastui-editor.css';
-import {getTypeList} from "../redux/typeSlice";
+import {getTypeListAsync} from "../redux/typeSlice";
 import {addIssueApi} from "../api/issue";
 import {useNavigate} from "react-router-dom";
 function AddIssue() {
@@ -24,7 +24,7 @@ function AddIssue() {
 
     useEffect(() => {
         if(typeList.length === 0) {
-            dispatch(getTypeList());
+            dispatch(getTypeListAsync());
         }
     }, [dispatch, typeList]);
 

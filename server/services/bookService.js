@@ -3,7 +3,7 @@ const {
   findBookByIdDao,
   addBookDao,
   deleteBookDao,
-  updateBookDao,
+  updateBookApiDao,
 } = require("../dao/bookDao");
 const {
   findBookCommentByIdDao,
@@ -74,6 +74,6 @@ module.exports.deleteBookService = async function (id) {
 /**
  * 修改书籍
  */
-module.exports.updateBookService = async function (id, newInfo) {
-  return await updateBookDao(id, newInfo);
+module.exports.updateBookApiService = async function (id, newInfo) {
+  return await updateBookApiDao(id, newInfo);
 };

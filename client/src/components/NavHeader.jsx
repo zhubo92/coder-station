@@ -1,5 +1,5 @@
-import React from 'react';
-import {NavLink} from "react-router-dom";
+import React, {useState} from 'react';
+import {NavLink, useNavigate} from "react-router-dom";
 import {Input, Select} from "antd";
 import LoginAvatar from "./LoginAvatar";
 
@@ -17,7 +17,25 @@ const options = [
 ];
 
 function NavHeader({handleLogin}) {
-    const onSearch = (value, _e, info) => console.log(info?.source, value);
+    const navigate = useNavigate();
+    const [currentOption, setCurrentOption] = useState('issues')
+
+    function onSearch(value) {
+        if (value) {
+            navigate("/search", {
+                state: {
+                    value,
+                    currentOption
+                }
+            })
+        } else {
+            navigate("/");
+        }
+    }
+
+    function onChange(value) {
+        setCurrentOption(value);
+    }
 
     return (
         <div className="headerContainer">
@@ -37,10 +55,11 @@ function NavHeader({handleLogin}) {
             </nav>
             <div className="searchContainer">
                 <Select
-                    defaultValue="issues"
+                    value={currentOption}
                     options={options}
                     size="large"
                     style={{width: "20%"}}
+                    onChange={onChange}
                 />
                 <Search
                     placeholder="请输入"

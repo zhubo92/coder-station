@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styles from '../style/IssueItem.module.css';
 import {formatDate} from "../utils/tools";
 import {useDispatch, useSelector} from "react-redux";
-import {getTypeList} from "../redux/typeSlice";
+import {getTypeListAsync} from "../redux/typeSlice";
 import {message, Tag} from "antd";
 import {getUserInfoByIdApi} from "../api/user";
 import {useNavigate} from "react-router-dom";
@@ -20,7 +20,7 @@ function IssueItem({item}) {
 
     useEffect(() => {
         if(typeList.length === 0) {
-            dispatch(getTypeList());
+            dispatch(getTypeListAsync());
         }
     }, [dispatch, typeList]);
 
