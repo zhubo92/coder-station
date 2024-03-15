@@ -1,3 +1,10 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
 .header {
   width: 100%;
   position: fixed;
@@ -49,8 +56,6 @@
   font-size: 16px;
 }
 
-
-
 .searchContainer {
   width: 500px;
   height: 100%;
@@ -69,6 +74,8 @@
 }
 
 .content {
+  position: relative;
+  flex: 1;
   width: 1200px;
   /* height: 5000px; */
   background-color: #fff;

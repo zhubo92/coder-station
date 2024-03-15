@@ -7,7 +7,7 @@ import zhCN from 'antd/locale/zh_CN';
 import './style/Reset.css'
 import store from './redux/store';
 import {Provider} from 'react-redux';
-import './index.css'
+import './style/index.css'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

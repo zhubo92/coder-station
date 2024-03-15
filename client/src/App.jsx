@@ -1,13 +1,13 @@
 import NavHeader from "./components/NavHeader";
 import PageFooter from "./components/PageFooter";
 import React, {useEffect, useState} from 'react';
-import {Layout, message} from 'antd';
+import {FloatButton, Layout, message} from 'antd';
 import './style/App.css';
-import RouterConfig from './router/index';
 import LoginForm from "./components/LoginForm";
 import {getInfoApi, getUserInfoByIdApi} from "./api/user";
 import {useDispatch} from "react-redux";
 import {changeLoginStatus, initUserInfo} from "./redux/userSlice";
+import RouteBefore from "./router/RouteBefore";
 
 const {Header, Content, Footer} = Layout;
 
@@ -48,12 +48,13 @@ function App() {
                 <NavHeader handleLogin={handleLogin}/>
             </Header>
             <Content className="content">
-                <RouterConfig/>
+                <RouteBefore/>
             </Content>
             <Footer>
                 <PageFooter/>
             </Footer>
             <LoginForm isShow={isModalOpen} closeModal={closeModal}/>
+            <FloatButton.BackTop />
         </div>
     );
 }

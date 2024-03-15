@@ -24,7 +24,7 @@ function Search() {
         async function fetchData() {
             const {value, currentOption} = state;
             const p = {...params};
-            let request = null;
+            let request = getIssueByPageApi;
             if(currentOption === 'issues') {
                 p.issueTitle = value;
                 p.issueStatus = true;
@@ -36,7 +36,6 @@ function Search() {
 
             const {data, msg, code} = await request(p);
             if(code === 0) {
-                console.log(data)
                 setList(data.data);
                 setTotal(data.count);
             } else {
