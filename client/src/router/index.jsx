@@ -6,10 +6,12 @@ import AddIssue from "../pages/AddIssue";
 import IssueDetail from "../pages/IssueDetail";
 import BookDetail from "../pages/BookDetail";
 import Search from "../pages/Search";
+import PersonalCenter from "../pages/PersonalCenter";
 
 function RouteConfig() {
     return (
         <Routes>
+            <Route path="/personalCenter" element={<PersonalCenter/>}/>
             <Route path="/interviews" element={<Interviews/>}/>
             <Route path="/search" element={<Search />} />
             <Route path="/books" element={<Books />} />

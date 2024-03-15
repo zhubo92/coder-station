@@ -14,7 +14,7 @@ function LoginAvatar({handleLogin}) {
     function handleClick(item) {
         console.log(item,'handleClick');
         if(item === '个人中心') {
-
+            navigate("/personalCenter");
         } else {
             localStorage.removeItem('userToken');
             dispatch(clearUserInfo());
