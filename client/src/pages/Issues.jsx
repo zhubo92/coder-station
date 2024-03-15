@@ -11,6 +11,9 @@ import TypeSelect from "../components/TypeSelect";
 import {useSelector} from "react-redux";
 import MyPagination from "../components/MyPagination";
 
+/**
+ * 问答
+ */
 function Issues() {
     const [list, setList] = useState([]);
     const [params, setParams] = useState({

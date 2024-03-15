@@ -11,6 +11,9 @@ import {message} from "antd";
 import SearchItem from "../components/SearchItem";
 import MyPagination from "../components/MyPagination";
 
+/**
+ * 搜索
+ */
 function Search() {
     const {state} = useLocation();
     const [params, setParams] = useState({

@@ -8,6 +8,10 @@ import '@toast-ui/editor/dist/toastui-editor.css';
 import {getTypeListAsync} from "../redux/typeSlice";
 import {addIssueApi} from "../api/issue";
 import {useNavigate} from "react-router-dom";
+
+/**
+ * 新增问答
+ */
 function AddIssue() {
     const [form, setForm] = useState({
         issueTitle: "",

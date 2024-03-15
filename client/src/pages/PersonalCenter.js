@@ -60,7 +60,7 @@ function PersonalCenter() {
     }
 
     function updatePasswordInfo(newInfo, key) {
-        const newPasswordInfo = { ...passwordInfo };
+        const newPasswordInfo = {...passwordInfo};
         newPasswordInfo[key] = newInfo.trim();
         setPasswordInfo(newPasswordInfo);
         // 如果是新密码框，更新 editInfo 的内容
@@ -74,7 +74,7 @@ function PersonalCenter() {
             message.error("昵称不能为空");
             return;
         }
-        const newUserInfo = { ...editInfo };
+        const newUserInfo = {...editInfo};
         if (typeof newInfo === 'string') {
             newUserInfo[key] = newInfo.trim();
         } else {
@@ -85,7 +85,7 @@ function PersonalCenter() {
 
     async function checkPassword() {
         if (passwordInfo.oldpassword) {
-            const { data } = await checkPasswordIsRightApi(userInfo._id, passwordInfo.oldpassword);
+            const {data} = await checkPasswordIsRightApi(userInfo._id, passwordInfo.oldpassword);
             if (!data) {
                 return Promise.reject("密码不正确");
             }
@@ -292,8 +292,8 @@ function PersonalCenter() {
             );
             break;
         }
-    }
-    ;
+        default:
+    };
 
     return (
         <div>
@@ -330,16 +330,18 @@ function PersonalCenter() {
                 </div>
                 {/* 社交账号 */}
                 <div className={styles.row}>
-                    <Card title="社交账号" extra={<div className={styles.edit} onClick={() => handleEdit('社交账号')}>编辑</div>}>
+                    <Card title="社交账号"
+                          extra={<div className={styles.edit} onClick={() => handleEdit('社交账号')}>编辑</div>}>
                         <PersonalInfoItem title="邮箱" value={userInfo.mail ? userInfo.mail : "未填写"}/>
-                        <PersonalInfoItem title="QQ号" value={userInfo.qq ? userInfo.qq : "未填写"} />
-                        <PersonalInfoItem title="微信号" value={userInfo.wechat ? userInfo.wechat : "未填写"} />
-                        <PersonalInfoItem title="github" value={userInfo.github ? userInfo.github : "未填写"} />
+                        <PersonalInfoItem title="QQ号" value={userInfo.qq ? userInfo.qq : "未填写"}/>
+                        <PersonalInfoItem title="微信号" value={userInfo.wechat ? userInfo.wechat : "未填写"}/>
+                        <PersonalInfoItem title="github" value={userInfo.github ? userInfo.github : "未填写"}/>
                     </Card>
                 </div>
                 {/* 个人简介 */}
                 <div className={styles.row}>
-                    <Card title="个人简介" extra={<div className={styles.edit} onClick={() => handleEdit('个人简介')}>编辑</div>}>
+                    <Card title="个人简介"
+                          extra={<div className={styles.edit} onClick={() => handleEdit('个人简介')}>编辑</div>}>
                         <p className={styles.intro}>
                             {userInfo.intro ? userInfo.intro : "未填写"}
                         </p>

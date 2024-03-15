@@ -7,6 +7,9 @@ import {message, Tree} from "antd";
 import {getInterviewByIdApi} from "../api/interview";
 import styles from '../style/Interview.module.css';
 
+/**
+ * 面试题
+ */
 function Interviews() {
     const {interviewTitleList} = useSelector(state => state.interview);
     const {typeList} = useSelector(state => state.type);

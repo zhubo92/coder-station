@@ -10,7 +10,9 @@ import { getBookByIdApi, updateBookApi } from "../api/book"
 import { updateUserByIdApi } from "../api/user"
 import styles from "../style/BookDetail.module.css"
 
-
+/**
+ * 书籍详情
+ */
 function BookDetail() {
     const { id } = useParams();
     const [bookInfo, setBookInfo] = useState(null);
@@ -31,7 +33,7 @@ function BookDetail() {
             })
         }
         fetchData();
-    }, [])
+    }, [id])
 
     const showModal = () => {
         setIsModalOpen(true);
