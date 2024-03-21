@@ -37,7 +37,7 @@ function IssueItem({item}) {
     const type = typeList.find(t => t._id === item.typeId);
 
     return (
-        <div className={styles.container} onClick={() => navigate(`/issueDetail/${item._id}`)}>
+        <div className={styles.container} onClick={() => navigate(`/issues/${item._id}`)}>
             {/* 回答数 */}
             <div className={styles.issueNum}>
                 <div>{item.commentNumber}</div>

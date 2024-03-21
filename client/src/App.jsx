@@ -2,12 +2,12 @@ import NavHeader from "./components/NavHeader";
 import PageFooter from "./components/PageFooter";
 import React, {useEffect, useState} from 'react';
 import {FloatButton, Layout, message} from 'antd';
-import './style/App.css';
 import LoginForm from "./components/LoginForm";
 import {getInfoApi, getUserInfoByIdApi} from "./api/user";
 import {useDispatch} from "react-redux";
 import {changeLoginStatus, initUserInfo} from "./redux/userSlice";
-import RouteBefore from "./router/RouteBefore";
+import RouteConfig from "./router/index";
+import './style/App.css';
 
 const {Header, Content, Footer} = Layout;
 
@@ -48,7 +48,7 @@ function App() {
                 <NavHeader handleLogin={handleLogin}/>
             </Header>
             <Content className="content">
-                <RouteBefore/>
+                <RouteConfig/>
             </Content>
             <Footer>
                 <PageFooter/>
