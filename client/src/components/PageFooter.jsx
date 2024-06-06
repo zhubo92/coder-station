@@ -6,39 +6,23 @@ function PageFooter() {
             <p className="links">
                 <span className="linkItem">友情链接：</span>
                 <a
-                    href="https://duyi.ke.qq.com/"
+                    href="https://zhubo92.com/"
                     target="_blank"
                     rel="noreferrer"
                     className="linkItem"
                 >
-                    渡一教育-腾讯课堂
+                    朱波的网站
                 </a>
                 <a
-                    href="http://www.yuanjin.tech/"
+                    href="https://blog.zhubo92.com/"
                     target="_blank"
                     rel="noreferrer"
                     className="linkItem"
                 >
-                    袁进的博客
-                </a>
-                <a
-                    href="http://yanhongzhi.com/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="linkItem"
-                >
-                    Mr.Yan
-                </a>
-                <a
-                    href="https://blog.csdn.net/jackfrued"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="linkItem"
-                >
-                    骆昊的技术专栏
+                    朱波的博客
                 </a>
             </p>
-            <p>© 2022 - Coder Station</p>
+            <p>© 2024 - Coder Station</p>
             <p>Powered by Create React App</p>
         </div>
     );

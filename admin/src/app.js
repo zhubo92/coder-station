@@ -39,11 +39,11 @@ export async function getInitialState() {
 
 export const layout = () => {
   return {
-    logo: 'https://xiejie-typora.oss-cn-chengdu.aliyuncs.com/2022-10-18-074620.png',
+    logo: '/favicon.ico',
     menu: {
       locale: false,
     },
-    logout: (initialState) => {
+    logout: () => {
       localStorage.removeItem('adminToken');
       location.href = '/login';
       message.success('退出登录成功');
