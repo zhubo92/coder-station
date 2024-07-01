@@ -9,4 +9,4 @@
 ```shell
 nvm use $(Get-Content .nvmrc)
 ```
-注：node版本不对会导致数据库连接不上zhubo2
+注：node版本不对会导致数据库连接不上zhubo
