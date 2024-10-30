@@ -11,6 +11,11 @@ mvnw.cmd
 logs/
 target/
 
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
 .project
 .settings
 .classpath
