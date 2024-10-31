@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "server": "node ./bin/www"
+    "server": "node ./bin/www",
+    "pm2": "pm2 start app.js --name coderstation"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -18,6 +19,7 @@
     "mongoose": "^6.6.5",
     "morgan": "~1.9.1",
     "multer": "^1.4.5-lts.1",
+    "pm2": "^5.4.2",
     "svg-captcha": "^1.4.0",
     "validate.js": "^0.13.1"
   }
